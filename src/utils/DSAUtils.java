@@ -81,15 +81,22 @@ public class DSAUtils {
 	 */
 	public static BigInteger pow(BigInteger base, BigInteger exponent) {
 		BigInteger result = BigInteger.ONE;
-		while (exponent.signum() > 0) {
-			if (exponent.testBit(0))
-				result = result.multiply(base);
-			base = base.multiply(base);
-			exponent = exponent.shiftRight(1);
-//			System.out.println(result);
+		for (BigInteger i = new BigInteger("0"); !i.equals(exponent); i = i.add(BigInteger.ONE)) {
+			result = result.multiply(base);
 		}
 		return result;
 	}
+//	public static BigInteger pow(BigInteger base, BigInteger exponent) {
+//		BigInteger result = BigInteger.ONE;
+//		while (exponent.signum() > 0) {
+//			if (exponent.testBit(0))
+//				result = result.multiply(base);
+//			base = base.multiply(base);
+//			exponent = exponent.shiftRight(1);
+////			System.out.println(result);
+//		}
+//		return result;
+//	}
 
 //	public static BigInteger pow(BigInteger mantissa, BigInteger exponent) {  
 //        if(exponent.equals(BigInteger.ONE)) return mantissa;  
