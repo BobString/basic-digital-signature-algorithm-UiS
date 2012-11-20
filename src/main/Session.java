@@ -28,7 +28,7 @@ public class Session {
 		} else {
 			debug = false;
 		}
-		
+
 		// ==Q==
 		debugMode("Creating global key Q .......... ", false);
 		globalKeyQ = DSAUtils.getPrime(160);
@@ -115,6 +115,13 @@ public class Session {
 				System.out.print(s);
 			}
 		}
+	}
+
+	public void destroy() {
+		globalKeyP = null;
+		globalKeyQ = null;
+		globalKeyG = null;
+		session = null;
 	}
 
 }

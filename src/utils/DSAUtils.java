@@ -79,25 +79,28 @@ public class DSAUtils {
 	 *            exponent
 	 * @return BigInteger result
 	 */
-//	public static BigInteger pow(BigInteger base, BigInteger exponent) {
-//		BigInteger result = BigInteger.ONE;
-//		while (exponent.signum() > 0) {
-//			if (exponent.testBit(0))
-//				result = result.multiply(base);
-//			base = base.multiply(base);
-//			exponent = exponent.shiftRight(1);
-//		}
-//		return result;
-//	}
-	public static BigInteger pow(BigInteger mantissa, BigInteger exponent) {  
-        if(exponent.equals(BigInteger.ONE)) return mantissa;  
-        if(exponent.testBit(0)) {  
-            return mantissa.multiply(pow(mantissa,exponent.subtract(BigInteger.ONE)));  
-        }  
-        BigInteger tmp = pow(mantissa,exponent.shiftRight(1));  
-        return tmp.multiply(tmp);  
-    }
+	public static BigInteger pow(BigInteger base, BigInteger exponent) {
+		BigInteger result = BigInteger.ONE;
+		while (exponent.signum() > 0) {
+			if (exponent.testBit(0))
+				result = result.multiply(base);
+			base = base.multiply(base);
+			exponent = exponent.shiftRight(1);
+//			System.out.println(result);
+		}
+		return result;
+	}
 
+//	public static BigInteger pow(BigInteger mantissa, BigInteger exponent) {  
+//        if(exponent.equals(BigInteger.ONE)) return mantissa;  
+//        if(exponent.testBit(0)) {  
+//            return mantissa.multiply(pow(mantissa,exponent.subtract(BigInteger.ONE)));  
+//        }  
+//        BigInteger tmp = pow(mantissa,exponent.shiftRight(1));  
+//        return tmp.multiply(tmp);  
+//    }
+	
+	
 	
 	/**
 	 * Likelihood of false prime is less than 1/2^ERR_VAL
