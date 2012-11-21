@@ -79,13 +79,13 @@ public class DSAUtils {
 	 *            exponent
 	 * @return BigInteger result
 	 */
-	public static BigInteger pow(BigInteger base, BigInteger exponent) {
-		BigInteger result = BigInteger.ONE;
-		for (BigInteger i = new BigInteger("0"); !i.equals(exponent); i = i.add(BigInteger.ONE)) {
-			result = result.multiply(base);
-		}
-		return result;
-	}
+//	public static BigInteger pow(BigInteger base, BigInteger exponent) {
+//		BigInteger result = BigInteger.ONE;
+//		for (BigInteger i = new BigInteger("0"); !i.equals(exponent); i = i.add(BigInteger.ONE)) {
+//			result = result.multiply(base);
+//		}
+//		return result;
+//	}
 //	public static BigInteger pow(BigInteger base, BigInteger exponent) {
 //		BigInteger result = BigInteger.ONE;
 //		while (exponent.signum() > 0) {
@@ -98,14 +98,38 @@ public class DSAUtils {
 //		return result;
 //	}
 
-//	public static BigInteger pow(BigInteger mantissa, BigInteger exponent) {  
-//        if(exponent.equals(BigInteger.ONE)) return mantissa;  
-//        if(exponent.testBit(0)) {  
-//            return mantissa.multiply(pow(mantissa,exponent.subtract(BigInteger.ONE)));  
-//        }  
-//        BigInteger tmp = pow(mantissa,exponent.shiftRight(1));  
-//        return tmp.multiply(tmp);  
-//    }
+	public static BigInteger pow(BigInteger base, BigInteger exponent) {  
+		BigInteger s = BigInteger.ONE;
+		BigInteger t = base;
+		BigInteger q = exponent;
+		
+		while(q.compareTo(BigInteger.ZERO) == 1){
+			if(q.getLowestSetBit() != 0){
+				s= s.multiply(t);
+			}
+			q= q.shiftRight(1);
+			t = t.pow(2);
+		}
+		return s;
+	}
+	
+	public static BigInteger montgomeryPow(BigInteger base, BigInteger exponent) {
+//		x1=x; x2=x2
+//		for i=k-2 to 0 do
+//		  If ni=0 then
+//		    x2=x1*x2; x1=x12
+//		  else
+//		    x1=x1*x2; x2=x22
+//		return x1
+		
+		BigInteger x1 = base:
+		BigInteger x2 = base.pow(2);
+		for (BigInteger i = exponent.subtract(BigInteger.valueOf(2)); i.equals(BigInteger.ZERO); i = i.subtract(BigInteger.ONE)) {
+			
+		}
+	
+	}
+
 	
 	
 	

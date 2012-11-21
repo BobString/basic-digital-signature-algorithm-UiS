@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 import utils.DSAUtils;
 
+import com.sun.tools.javac.util.Pair;
+
 /**
  * @author robertomm Singleton class
  */
@@ -47,8 +49,6 @@ public class Session {
 		debugMode("		Ensuring that min < p .......... ", false);
 		while (min.compareTo(p) >= 0) {
 			p = DSAUtils.getPrime(l1);
-			System.out.println("PIN: " + p);
-			System.out.println("MIN: " + min);
 			// This ensure that min < p and p never is going to be greater than
 			// L
 		}
@@ -62,7 +62,7 @@ public class Session {
 		// H is going to be 2 and pass the first condition 1 < h < p-1 Let's see
 		// if it pass the second one
 		System.out.println(exp);
-		BigInteger g = DSAUtils.pow(two, exp);
+		BigInteger g = DSAUtils.pow(two, exp);//FIXME: ASKI ESTA EL PROBLEMAA
 		// With this, we ensure that the second condition is approved
 		Integer inte = 3;
 		while (!(g.mod(p).compareTo(BigInteger.ONE) > 1)) {
@@ -113,8 +113,23 @@ public class Session {
 				System.out.println(s);
 			} else {
 				System.out.print(s);
+				System.out.print(s);
 			}
 		}
+	}
+	
+	public Pair<BigInteger, BigInteger> getPrivateKey(){
+		
+		
+		//Private key
+		BigInteger privK = DSAUtils.getPrime(getGlobalKeyQ().bitLength() - 1);
+		
+		//Public key: 
+		BigInteger pubK = getGlobalKeyG().modPow(privK, getGlobalKeyP());
+		
+		Pair<BigInteger, BigInteger> result = Pair.of(privK, pubK);
+		
+		return result;
 	}
 
 	public void destroy() {
