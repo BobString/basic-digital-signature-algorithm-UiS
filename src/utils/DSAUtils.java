@@ -1,5 +1,8 @@
 package utils;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Random;
 
@@ -113,26 +116,6 @@ public class DSAUtils {
 		return s;
 	}
 	
-	public static BigInteger montgomeryPow(BigInteger base, BigInteger exponent) {
-//		x1=x; x2=x2
-//		for i=k-2 to 0 do
-//		  If ni=0 then
-//		    x2=x1*x2; x1=x12
-//		  else
-//		    x1=x1*x2; x2=x22
-//		return x1
-		
-		BigInteger x1 = base:
-		BigInteger x2 = base.pow(2);
-		for (BigInteger i = exponent.subtract(BigInteger.valueOf(2)); i.equals(BigInteger.ZERO); i = i.subtract(BigInteger.ONE)) {
-			
-		}
-	
-	}
-
-	
-	
-	
 	/**
 	 * Likelihood of false prime is less than 1/2^ERR_VAL
 	 * 
@@ -151,5 +134,19 @@ public class DSAUtils {
 			return (start);
 		else
 			return (nextPrime(start));
+	}
+	
+	public static void save2file(String path, String content){
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(path));
+			out.write(content);
+			out.close();
+			} 
+			catch (IOException e) 
+			{ 
+			System.out.println("Exception ");
+
+			}
+
 	}
 }

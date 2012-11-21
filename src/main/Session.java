@@ -1,6 +1,7 @@
 package main;
 
 import java.math.BigInteger;
+import java.util.Random;
 
 import utils.DSAUtils;
 
@@ -33,45 +34,41 @@ public class Session {
 
 		// ==Q==
 		debugMode("Creating global key Q .......... ", false);
-		globalKeyQ = DSAUtils.getPrime(160);
+		globalKeyQ = DSAUtils.getPrime(161);
 		debugMode("[OK]", true);
 
 		// ==P==
-		debugMode("Creating global key P: ", true);
+		debugMode("Creating global key P .......... ", false);
 		BigInteger two = BigInteger.valueOf(2);
 		BigInteger min = two.pow(L - 1);
 		// BigInteger max = two.pow(L);
 
-		debugMode("		Creating next prime of min .......... ", false);
+		//debugMode("		Creating next prime of min .......... ", false);
 		Integer l1 = (L - 1);
 		BigInteger p = DSAUtils.nextPrime(min);
-		debugMode("[OK]", true);
-		debugMode("		Ensuring that min < p .......... ", false);
+		//debugMode("[OK]", true);
+		//debugMode("		Ensuring that min < p .......... ", false);
 		while (min.compareTo(p) >= 0) {
 			p = DSAUtils.getPrime(l1);
 			// This ensure that min < p and p never is going to be greater than
 			// L
 		}
-		debugMode("[OK]", true);
+		//debugMode("[OK]", true);
 		globalKeyP = p;
-		debugMode("Global key P succesfully created.", true);
-
+		debugMode("[OK]", true);
+		
 		// ==G==
-		BigInteger exp = globalKeyP.subtract(BigInteger.ONE);
-		exp = exp.divide(globalKeyQ);
-		// H is going to be 2 and pass the first condition 1 < h < p-1 Let's see
-		// if it pass the second one
-		System.out.println(exp);
-		BigInteger g = DSAUtils.pow(two, exp);//FIXME: ASKI ESTA EL PROBLEMAA
-		// With this, we ensure that the second condition is approved
-		Integer inte = 3;
-		while (!(g.mod(p).compareTo(BigInteger.ONE) > 1)) {
-			BigInteger aux = BigInteger.valueOf(inte);
-			g = DSAUtils.pow(aux, exp);
-			inte++;
-		}
-		globalKeyG = g;
+		debugMode("Creating global key G .......... ", false);
+		BigInteger p1 = globalKeyP.subtract(BigInteger.ONE);
+		BigInteger exp = p1.divide(globalKeyQ);
 
+		BigInteger tempg;
+		Random random = new Random();
+		do {
+	        tempg = new BigInteger(p1.bitLength(), random);
+	    } while (tempg.compareTo(p1) != -1 && tempg.compareTo(BigInteger.ONE) != 1);
+		globalKeyG = tempg.modPow(exp, p);
+		debugMode("[OK]", true);
 	}
 
 	public static Session getInstance(boolean debugMode) {
@@ -112,7 +109,6 @@ public class Session {
 			if (ln) {
 				System.out.println(s);
 			} else {
-				System.out.print(s);
 				System.out.print(s);
 			}
 		}
