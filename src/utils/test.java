@@ -1,7 +1,6 @@
 package utils;
 
 import java.math.BigInteger;
-import java.util.Random;
 
 import com.sun.tools.javac.util.Pair;
 
@@ -19,9 +18,9 @@ public class test {
 		 Pair<BigInteger, BigInteger> privateKeys = session.getPrivateKey();
 		 
 		 String tatiana = "Hi Tatiana i love you";
-		 Pair<String, Pair<BigInteger, BigInteger>> sign = DSA.sign(tatiana, session.getGlobalKeyG(), session.getGlobalKeyP(), session.getGlobalKeyG(), privateKeys.fst);
+		 Pair<String, Pair<BigInteger, BigInteger>> sign = DSA.sign(true,tatiana, session.getGlobalKeyG(), session.getGlobalKeyP(), session.getGlobalKeyG(), privateKeys.fst);
 		 
-		 System.out.println(DSA.verify(tatiana, sign.snd.fst, sign.snd.snd, session.getGlobalKeyG(), session.getGlobalKeyP(), session.getGlobalKeyQ(), privateKeys.snd));
+		 System.out.println(DSA.verify(true,tatiana, sign.snd.fst, sign.snd.snd, session.getGlobalKeyG(), session.getGlobalKeyP(), session.getGlobalKeyQ(), privateKeys.snd));
 		 
 		 session.destroy();
 

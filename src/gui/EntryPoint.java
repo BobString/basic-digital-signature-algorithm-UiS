@@ -81,58 +81,58 @@ public class EntryPoint implements ActionListener {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frmDsaImplementation.getContentPane().add(tabbedPane,
 				BorderLayout.CENTER);
-
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("First step", null, panel_2, null);
-		panel_2.setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("Initiate the session: ");
-		lblNewLabel.setBounds(100, 22, 128, 16);
-		panel_2.add(lblNewLabel);
-
-		globalKeysButton = new JButton("Run");
-		globalKeysButton.addActionListener(this);
-		globalKeysButton.setBounds(233, 16, 75, 29);
-		panel_2.add(globalKeysButton);
-
-		JLabel lblGetPersonalKey = new JLabel("Get personal key:");
-		lblGetPersonalKey.setBounds(100, 61, 128, 16);
-		panel_2.add(lblGetPersonalKey);
-
-		personalKeysBt = new JButton("Run");
-		personalKeysBt.addActionListener(this);
-		personalKeysBt.setBounds(233, 57, 75, 29);
-		panel_2.add(personalKeysBt);
-
-		JLabel lblSession = new JLabel("Session");
-		lblSession.setBounds(301, 210, 61, 16);
-		panel_2.add(lblSession);
-
-		labelStart1 = new JLabel("not started");
-		labelStart1.setBounds(354, 210, 69, 16);
-		panel_2.add(labelStart1);
-
-		JLabel lblPersonalKeys = new JLabel("Personal keys:");
-		lblPersonalKeys.setBounds(19, 96, 90, 16);
-		panel_2.add(lblPersonalKeys);
-
-		JLabel lblPrivateKey = new JLabel("Private key:");
-		lblPrivateKey.setBounds(62, 124, 75, 16);
-		panel_2.add(lblPrivateKey);
-
-		textPrivKey = new JTextArea();
-		textPrivKey.setEditable(false);
-		textPrivKey.setBounds(149, 124, 238, 16);
-		panel_2.add(textPrivKey);
-
-		JLabel lblPublicKey = new JLabel("Public key:");
-		lblPublicKey.setBounds(62, 152, 75, 16);
-		panel_2.add(lblPublicKey);
-
-		textPubKey = new JTextArea();
-		textPubKey.setEditable(false);
-		textPubKey.setBounds(149, 152, 238, 16);
-		panel_2.add(textPubKey);
+		
+				JPanel panel_2 = new JPanel();
+				tabbedPane.addTab("First step", null, panel_2, null);
+				panel_2.setLayout(null);
+				
+						JLabel lblNewLabel = new JLabel("Initiate the session: ");
+						lblNewLabel.setBounds(131, 36, 128, 16);
+						panel_2.add(lblNewLabel);
+						
+								globalKeysButton = new JButton("Run");
+								globalKeysButton.addActionListener(this);
+								globalKeysButton.setBounds(264, 30, 75, 29);
+								panel_2.add(globalKeysButton);
+								
+										JLabel lblGetPersonalKey = new JLabel("Get personal key:");
+										lblGetPersonalKey.setBounds(131, 75, 128, 16);
+										panel_2.add(lblGetPersonalKey);
+										
+												personalKeysBt = new JButton("Run");
+												personalKeysBt.addActionListener(this);
+												personalKeysBt.setBounds(264, 71, 75, 29);
+												panel_2.add(personalKeysBt);
+												
+														JLabel lblSession = new JLabel("Session");
+														lblSession.setBounds(385, 269, 61, 16);
+														panel_2.add(lblSession);
+														
+																labelStart1 = new JLabel("not started");
+																labelStart1.setBounds(438, 269, 69, 16);
+																panel_2.add(labelStart1);
+																
+																		JLabel lblPersonalKeys = new JLabel("Personal keys:");
+																		lblPersonalKeys.setBounds(17, 131, 90, 16);
+																		panel_2.add(lblPersonalKeys);
+																		
+																				JLabel lblPrivateKey = new JLabel("Private key:");
+																				lblPrivateKey.setBounds(60, 159, 75, 16);
+																				panel_2.add(lblPrivateKey);
+																				
+																						textPrivKey = new JTextArea();
+																						textPrivKey.setEditable(false);
+																						textPrivKey.setBounds(147, 159, 337, 35);
+																						panel_2.add(textPrivKey);
+																						
+																								JLabel lblPublicKey = new JLabel("Public key:");
+																								lblPublicKey.setBounds(60, 208, 75, 16);
+																								panel_2.add(lblPublicKey);
+																								
+																										textPubKey = new JTextArea();
+																										textPubKey.setEditable(false);
+																										textPubKey.setBounds(147, 208, 337, 35);
+																										panel_2.add(textPubKey);
 
 		panel = new JPanel();
 		tabbedPane.addTab("Sign", null, panel, null);
@@ -140,25 +140,25 @@ public class EntryPoint implements ActionListener {
 		panel.setLayout(null);
 
 		JLabel label = new JLabel("Session");
-		label.setBounds(300, 210, 69, 20);
+		label.setBounds(375, 265, 69, 20);
 		panel.add(label);
 
 		label_1 = new JLabel("not started");
-		label_1.setBounds(351, 210, 80, 20);
+		label_1.setBounds(427, 265, 80, 20);
 		panel.add(label_1);
 
 		JLabel lblPleaseIntroduceA = new JLabel(
 				"Please introduce a text to sign: ");
-		lblPleaseIntroduceA.setBounds(17, 62, 204, 16);
+		lblPleaseIntroduceA.setBounds(17, 64, 204, 16);
 		panel.add(lblPleaseIntroduceA);
 
 		textArea = new JTextArea();
-		textArea.setBounds(17, 90, 390, 39);
+		textArea.setBounds(17, 92, 473, 39);
 		panel.add(textArea);
 
 		btnSign = new JButton("Sign");
 		btnSign.addActionListener(this);
-		btnSign.setBounds(315, 141, 92, 29);
+		btnSign.setBounds(377, 143, 92, 29);
 		panel.add(btnSign);
 
 		JLabel label_4 = new JLabel("Personal keys:");
@@ -170,25 +170,25 @@ public class EntryPoint implements ActionListener {
 		panel.add(label_6);
 
 		textArea_2 = new JTextArea();
-		textArea_2.setBounds(147, 34, 238, 16);
+		textArea_2.setBounds(147, 32, 343, 20);
 		panel.add(textArea_2);
 
 		JLabel lblR = new JLabel("R: ");
-		lblR.setBounds(17, 141, 61, 16);
+		lblR.setBounds(17, 168, 61, 16);
 		panel.add(lblR);
 
 		textArea_3 = new JTextArea();
 		textArea_3.setEditable(false);
-		textArea_3.setBounds(17, 157, 275, 20);
+		textArea_3.setBounds(17, 184, 473, 29);
 		panel.add(textArea_3);
 
 		textArea_6 = new JTextArea();
 		textArea_6.setEditable(false);
-		textArea_6.setBounds(17, 206, 275, 20);
+		textArea_6.setBounds(17, 233, 473, 29);
 		panel.add(textArea_6);
 
 		JLabel lblS = new JLabel("S: ");
-		lblS.setBounds(17, 189, 61, 16);
+		lblS.setBounds(17, 216, 61, 16);
 		panel.add(lblS);
 
 		panel_1 = new JPanel();
@@ -269,7 +269,7 @@ public class EntryPoint implements ActionListener {
 			textPrivKey.setText(privateKeys.fst.toString());
 			textPubKey.setText(privateKeys.snd.toString());
 		} else if (e.getSource() == btnSign) {
-			Pair<String, Pair<BigInteger, BigInteger>> sign = DSA.sign(
+			Pair<String, Pair<BigInteger, BigInteger>> sign = DSA.sign(false,
 					textArea.getText(), session.getGlobalKeyG(),
 					session.getGlobalKeyP(), session.getGlobalKeyG(),
 					new BigInteger(textArea_2.getText()));
@@ -277,7 +277,7 @@ public class EntryPoint implements ActionListener {
 			textArea_6.setText(sign.snd.snd.toString());
 
 		} else if (e.getSource() == btnVerify) {
-			Boolean res = DSA.verify( textArea_5.getText(), new BigInteger(textArea_4.getText()), new BigInteger(textArea_7.getText()), session.getGlobalKeyG(), session.getGlobalKeyP(), session.getGlobalKeyQ(), new BigInteger(textArea_1.getText()));
+			Boolean res = DSA.verify( false,textArea_5.getText(), new BigInteger(textArea_4.getText()), new BigInteger(textArea_7.getText()), session.getGlobalKeyG(), session.getGlobalKeyP(), session.getGlobalKeyQ(), new BigInteger(textArea_1.getText()));
 			if(res){
 				lblNewLabel_1.setText("Integrity granted!");
 			}else{
