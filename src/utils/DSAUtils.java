@@ -53,7 +53,7 @@ public class DSAUtils {
 	 *            i, number of bits
 	 * @return BigInteger prime candidate
 	 */
-	private static BigInteger primeCandidate(Integer i) {
+	public static BigInteger primeCandidate(Integer i) {
 		BitArray b = new BitArray(i);
 
 		for (int j = 1; j < i; j++) {

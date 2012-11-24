@@ -1,6 +1,7 @@
 package utils;
 
 import java.math.BigInteger;
+import java.security.NoSuchAlgorithmException;
 
 import com.sun.tools.javac.util.Pair;
 
@@ -23,7 +24,6 @@ public class test {
 		 System.out.println(DSA.verify(true,tatiana, sign.snd.fst, sign.snd.snd, session.getGlobalKeyG(), session.getGlobalKeyP(), session.getGlobalKeyQ(), privateKeys.snd));
 		 
 		 session.destroy();
-
 
 	}
 	
