@@ -1,4 +1,4 @@
-package gui;
+package utils;
 
 public class Pair<F, S> {
 	private F first; // first member of pair

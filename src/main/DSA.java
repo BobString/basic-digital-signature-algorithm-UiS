@@ -1,10 +1,11 @@
 package main;
 
-import gui.Pair;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+
+import utils.Pair;
 
 /**
  * @author robertomm

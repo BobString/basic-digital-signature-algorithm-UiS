@@ -1,6 +1,5 @@
 package utils;
 
-import gui.Pair;
 
 import java.math.BigInteger;
 

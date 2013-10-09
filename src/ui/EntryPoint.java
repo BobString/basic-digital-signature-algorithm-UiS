@@ -1,4 +1,4 @@
-package gui;
+package ui;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 
 import main.DSA;
 import main.Session;
+import utils.Pair;
 import utils.TextAreaOutputStream;
 
 public class EntryPoint implements ActionListener {
@@ -24,6 +25,7 @@ public class EntryPoint implements ActionListener {
 	private JPanel panel;
 	private JPanel panel_1;
 	private Session session;
+	private Pair<BigInteger, BigInteger> privatek;
 	private JButton personalKeysBt;
 	private JTextArea textPrivKey;
 	private JTextArea textPubKey;
@@ -257,17 +259,18 @@ public class EntryPoint implements ActionListener {
 		panel_3.setLayout(null);
 
 		txtrHola = new JTextArea();
-		txtrHola.setBounds(6, 5, 522, 76);
+		txtrHola.setBounds(6, 25, 522, 100);
 		panel_3.add(txtrHola);
 		taos = TextAreaOutputStream.getInstance(txtrHola);
-		System.out.println("Holaaa");
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == globalKeysButton) {
+
 			session = Session.getInstance(true);
+
 			panel.setEnabled(true);
 			panel_1.setEnabled(true);
 			globalKeysButton.enableInputMethods(false);
@@ -276,14 +279,16 @@ public class EntryPoint implements ActionListener {
 			label_3.setText("started");
 
 		} else if (e.getSource() == personalKeysBt) {
-			Pair<BigInteger, BigInteger> privateKeys = session.getPrivateKey();
-			textPrivKey.setText(privateKeys.getFirst().toString());
-			textPubKey.setText(privateKeys.getSecond().toString());
+			privatek = session.getPrivateKey();
+
+			textPrivKey.setText(privatek.getFirst().toString(16));
+			textPubKey.setText(privatek.getSecond().toString(16));
 		} else if (e.getSource() == btnSign) {
 			Pair<BigInteger, BigInteger> sign = DSA.sign(false,
 					textArea.getText(), session.getGlobalKeyG(),
 					session.getGlobalKeyP(), session.getGlobalKeyG(),
-					new BigInteger(textArea_2.getText()));
+					privatek.getFirst());
+
 			textArea_3.setText(sign.getFirst().toString());
 			textArea_6.setText(sign.getSecond().toString());
 

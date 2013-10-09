@@ -1,10 +1,10 @@
 package main;
 
-import gui.Pair;
-
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Random;
+
+import utils.Pair;
 
 /**
  * @author robertomm
@@ -49,10 +49,9 @@ public class Session {
 
 		globalKeyQ = new BigInteger(160, 20, new SecureRandom());
 		debugMode("[OK]", true);
-		System.out.println("Q: " + globalKeyQ);
 
 		// ==P==
-		debugMode("Creating global key P .......... ", false);
+		debugMode("Creating global key P (be patient).......... ", false);
 
 		BigInteger tempP;
 		BigInteger tempP2;
@@ -61,8 +60,7 @@ public class Session {
 			tempP = new BigInteger(L, 20, rand);
 			tempP2 = tempP.subtract(BigInteger.ONE);
 			tempP = tempP.subtract(tempP2.remainder(globalKeyQ));
-		} while (!tempP.isProbablePrime(20)
-				|| tempP.bitLength() != L);
+		} while (!tempP.isProbablePrime(20) || tempP.bitLength() != L);
 
 		BigInteger p = tempP;
 
@@ -82,6 +80,10 @@ public class Session {
 				&& tempg.compareTo(BigInteger.ONE) != 1);
 		globalKeyG = tempg.modPow(exp, p);
 		debugMode("[OK]", true);
+		System.out.println("");
+		System.out.println("Q: " + globalKeyQ);
+		System.out.println("P: " + globalKeyP);
+		System.out.println("G: " + globalKeyG);
 	}
 
 	/**
