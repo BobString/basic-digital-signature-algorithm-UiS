@@ -1,5 +1,7 @@
 package main;
 
+import gui.Pair;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,8 +10,6 @@ import java.util.List;
 import java.util.Random;
 
 import utils.DSAUtils;
-
-import com.sun.tools.javac.util.Pair;
 
 /**
  * @author robertomm
@@ -116,7 +116,7 @@ public class Session {
 			int offset = 2;
 			List<BigInteger> V = new ArrayList<BigInteger>();
 			BigInteger W = BigInteger.ZERO;
-			
+
 			Boolean jump;
 			do {
 
@@ -128,7 +128,7 @@ public class Session {
 					mdaux = MessageDigest.getInstance("SHA-1");
 					mdaux.update(SEED.add(BigInteger.valueOf(offset + k))
 							.mod(BigInteger.valueOf(2).pow(g)).toByteArray());
-					 U = new BigInteger(mdaux.digest());
+					U = new BigInteger(mdaux.digest());
 					V.add(U);
 					// W = V0/font> + V1*2160 + ... + Vn-1*2(n-1)*160 + (Vn mod
 					// 2b)
@@ -242,7 +242,8 @@ public class Session {
 		// Public key:
 		BigInteger pubK = getGlobalKeyG().modPow(privK, getGlobalKeyP());
 
-		Pair<BigInteger, BigInteger> result = Pair.of(privK, pubK);
+		Pair<BigInteger, BigInteger> result = new Pair<BigInteger, BigInteger>(
+				privK, pubK);
 		debugMode("[OK]", true);
 
 		return result;

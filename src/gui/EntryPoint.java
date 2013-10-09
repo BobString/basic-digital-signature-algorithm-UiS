@@ -1,27 +1,21 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigInteger;
 
-import javax.swing.JFrame;
-import javax.swing.JTabbedPane;
-import java.awt.BorderLayout;
-
-import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-
-import utils.TextAreaOutputStream;
-
-import com.sun.tools.javac.util.Pair;
 
 import main.DSA;
 import main.Session;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.math.BigInteger;
-import java.awt.Font;
+import utils.TextAreaOutputStream;
 
 public class EntryPoint implements ActionListener {
 
@@ -265,7 +259,7 @@ public class EntryPoint implements ActionListener {
 		txtrHola = new JTextArea();
 		txtrHola.setBounds(6, 5, 522, 76);
 		panel_3.add(txtrHola);
-		taos = TextAreaOutputStream.getInstance(txtrHola);  
+		taos = TextAreaOutputStream.getInstance(txtrHola);
 		System.out.println("Holaaa");
 
 	}
@@ -283,15 +277,15 @@ public class EntryPoint implements ActionListener {
 
 		} else if (e.getSource() == personalKeysBt) {
 			Pair<BigInteger, BigInteger> privateKeys = session.getPrivateKey();
-			textPrivKey.setText(privateKeys.fst.toString());
-			textPubKey.setText(privateKeys.snd.toString());
+			textPrivKey.setText(privateKeys.getFirst().toString());
+			textPubKey.setText(privateKeys.getSecond().toString());
 		} else if (e.getSource() == btnSign) {
 			Pair<String, Pair<BigInteger, BigInteger>> sign = DSA.sign(false,
 					textArea.getText(), session.getGlobalKeyG(),
 					session.getGlobalKeyP(), session.getGlobalKeyG(),
 					new BigInteger(textArea_2.getText()));
-			textArea_3.setText(sign.snd.fst.toString());
-			textArea_6.setText(sign.snd.snd.toString());
+			textArea_3.setText(sign.getSecond().getFirst().toString());
+			textArea_6.setText(sign.getSecond().getSecond().toString());
 
 		} else if (e.getSource() == btnVerify) {
 			Boolean res = DSA.verify(false, textArea_5.getText(),
