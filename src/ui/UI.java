@@ -221,9 +221,9 @@ public class UI {
 			}
 		}
 		System.out.println("");
-		System.out.println("=== VERIFICATION STATUS ===");
-		
 		Boolean res = DSA.verify(true, text, r, s, g, p, q, y);
+		
+		System.out.println("=== VERIFICATION STATUS ===");
 		if (res) {
 			System.out.println("Approved!!");
 		} else {
