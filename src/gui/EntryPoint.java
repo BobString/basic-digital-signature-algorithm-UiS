@@ -74,7 +74,7 @@ public class EntryPoint implements ActionListener {
 	private void initialize() {
 		frmDsaImplementation = new JFrame();
 		frmDsaImplementation.setTitle("DSA implementation");
-		frmDsaImplementation.setBounds(100, 100, 534, 438);
+		frmDsaImplementation.setBounds(100, 100, 534, 538);
 		frmDsaImplementation.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDsaImplementation.getContentPane().setLayout(null);
 
@@ -280,12 +280,12 @@ public class EntryPoint implements ActionListener {
 			textPrivKey.setText(privateKeys.getFirst().toString());
 			textPubKey.setText(privateKeys.getSecond().toString());
 		} else if (e.getSource() == btnSign) {
-			Pair<String, Pair<BigInteger, BigInteger>> sign = DSA.sign(false,
+			Pair<BigInteger, BigInteger> sign = DSA.sign(false,
 					textArea.getText(), session.getGlobalKeyG(),
 					session.getGlobalKeyP(), session.getGlobalKeyG(),
 					new BigInteger(textArea_2.getText()));
-			textArea_3.setText(sign.getSecond().getFirst().toString());
-			textArea_6.setText(sign.getSecond().getSecond().toString());
+			textArea_3.setText(sign.getFirst().toString());
+			textArea_6.setText(sign.getSecond().toString());
 
 		} else if (e.getSource() == btnVerify) {
 			Boolean res = DSA.verify(false, textArea_5.getText(),

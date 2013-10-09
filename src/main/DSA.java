@@ -4,8 +4,7 @@ import gui.Pair;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-
-import utils.DSAUtils;
+import java.security.SecureRandom;
 
 /**
  * @author robertomm
@@ -36,18 +35,17 @@ public class DSA {
 	 * @return Pair<String, Pair<BigInteger, BigInteger>>, Pair of the message
 	 *         and another Pair with (r,s)
 	 */
-	public static Pair<String, Pair<BigInteger, BigInteger>> sign(boolean deb,
+	public static Pair<BigInteger, BigInteger> sign(boolean deb,
 			String message, BigInteger publcG, BigInteger publicP,
 			BigInteger publicQ, BigInteger privateX) {
-
 		debug = deb;
 		debugMode("=== CREATING SIGNATURE ===", true);
 
 		// K
 		debugMode("Creating auxiliar variable K .......... ", false);
-		BigInteger k = DSAUtils.getPrime(publicQ.bitLength());
-		while (k.compareTo(publicQ) != -1) {
-			k = DSAUtils.getPrime(publicQ.bitLength());
+		BigInteger k = new BigInteger(publicQ.bitLength(), new SecureRandom());
+		while (k.compareTo(publicQ) != -1 && k.compareTo(BigInteger.ZERO) != 1) {
+			k = new BigInteger(publicQ.bitLength(), new SecureRandom());
 		}
 		debugMode("[OK]", true);
 
@@ -59,7 +57,7 @@ public class DSA {
 		// S
 		debugMode("Creating S .......... ", false);
 		MessageDigest md = null;
-		BigInteger s = null;
+		BigInteger s = BigInteger.ONE;
 		try {
 			md = MessageDigest.getInstance("SHA-1");
 			md.update(message.getBytes());
@@ -70,8 +68,8 @@ public class DSA {
 			e.printStackTrace();
 		}
 		debugMode("[OK]", true);
-		Pair<String, Pair<BigInteger, BigInteger>> result = new Pair<String, Pair<BigInteger, BigInteger>>(
-				message, new Pair<BigInteger, BigInteger>(r, s));
+		Pair<BigInteger, BigInteger> result = new Pair<BigInteger, BigInteger>(
+				r, s);
 		return result;
 	}
 
@@ -99,7 +97,7 @@ public class DSA {
 	public static Boolean verify(boolean deb, String message, BigInteger r,
 			BigInteger s, BigInteger publcG, BigInteger publicP,
 			BigInteger publicQ, BigInteger privateY) {
-		debugMode("=== VERIFY SIGNATURE ===", true);
+		debugMode("=== VERIFYING SIGNATURE ===", true);
 		debug = deb;
 		MessageDigest md;
 		BigInteger v = BigInteger.ZERO;
